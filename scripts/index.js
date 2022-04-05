@@ -1,3 +1,4 @@
+// the elements we'll need
 const visualizationDiv = document.querySelector('div#visualizer');
 const arrSizeSlider = document.querySelector('input#array-size-slider');
 const startBtn = document.querySelector('button#start-btn');
@@ -47,24 +48,21 @@ function initSite() {
 // ****************************************************
 
 arrSizeSlider.addEventListener('input', e => {
-
     initArr();
-
 });
 
 // Made this button, so that a user can try the same algorithm, without changing the size
 shuffleArrbtn.addEventListener('click', e => {
-
-    visualizationDiv.innerHTML = "";
     initArr();
-
 });
 
 algorithmSelect.addEventListener('change', e => {
 
     currAlgo = e.target.value;
     const currentAlgoText = algorithmSelect.options[algorithmSelect.selectedIndex].text;
+    // switching the title
     algoTitle.innerText = currentAlgoText;
+    // switching the description text
     if (currAlgo === 'bubble-sort') {
         algoDescription.innerText = "Time complexity: O(n^2)";
     }
@@ -76,4 +74,5 @@ algorithmSelect.addEventListener('change', e => {
     }
 });
 
+// loading the default value of bars
 initSite();
