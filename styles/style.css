@@ -1,0 +1,16 @@
+/*  
+    storing frequently used colors, for easy maintainability
+*/
+:root {
+    --main-bg-color: #0b0c10;
+    --main-text-color: #c5c6c7;
+    --highlighted-text-color: #66fcf1;
+}
+
+* {
+    font-family: Consolas;
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
