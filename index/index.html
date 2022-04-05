@@ -13,7 +13,7 @@
     <div id="visualizer">
         <!-- TODO: create bars dynamically in js -->
 
-        <!-- The following code is to help me make the css will be deleted later -->
+        <!-- The following code is to help me make the css, will be deleted later -->
         <div class="sorted" style="height: 10px;"></div>
         <div class="sorted" style="height: 50px;"></div>
         <div class="bar" style="height: 100px;"></div>
@@ -25,19 +25,26 @@
         <div class="bar" style="height: 165px;"></div>
         <div class="bar" style="height: 150px;"></div>
         <div class="bar" style="height: 200px;"></div>
-
     </div>
-    <div class="bottom-bar">
+
+    <div id="settings">
         <button id="make-array-btn">Make Array</button>
 
-        <label for="array-size-slider">Array size</label>
-        <input type="range" min="10" max="100" value="50" class="slider" id="array-size-slider">
+        <div class="range-wrapper">
+            <label for="array-size-slider">Array size</label>
+            <input type="range" min="10" max="100" value="50" class="slider" id="array-size-slider">
+        </div>
 
         <select name="sorting-algorithms" id="select-algorithm">
             <option value="bubble-sort" selected>Bubble Sort</option>
             <option value="merge-sort">Merge Sort</option>
             <option value="quick-sort">Quick Sort</option>
         </select>
+    </div>
+
+    <h2>Bubble sort</h2>
+    <div id="algorithm-description">
+        Time complexity: O(n^2)
     </div>
 </body>
 

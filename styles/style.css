@@ -39,6 +39,59 @@ body {
     border-radius: 2px;
 }
 
+#settings {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+}
+
+button {
+    padding: 7px;
+    border-style: solid;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    margin: 15px;
+}
+
+button:hover {
+    padding: 7px;
+    margin: 15px;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+
+select {
+    padding: 5px;
+    margin: 15px;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    border-radius: 5px;
+}
+
+select:hover {
+    padding: 5px;
+    margin: 15px;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    border-radius: 5px;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+
+div.range-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 /*
     TODO: 
         Button style
