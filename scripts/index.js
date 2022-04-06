@@ -11,9 +11,9 @@ const maxValue = 300;
 let data = {
     heights: [],
     divs: [],
-    currAlgo: "bubble-sort"
+    currAlgo: "bubble-sort",
+    isSortRunning: false
 }
-let isSortRunning = false;
 
 // ****************************************************
 //                    FUNCTIONS
@@ -48,22 +48,8 @@ function initSite() {
     initBars(data);
 }
 
-// ****************************************************
-//                      EVENTS
-// ****************************************************
-
-arrSizeSlider.addEventListener('input', e => {
-    initBars(data);
-});
-
-// Made this button, so that a user can try the same algorithm, without changing the size
-shuffleArrbtn.addEventListener('click', e => {
-    initBars(data);
-});
-
-algorithmSelect.addEventListener('change', e => {
-
-    data.currAlgo = e.target.value;
+function selectAlgo() {
+    data.currAlgo = algorithmSelect.options[algorithmSelect.selectedIndex].value;
     const currentAlgoText = algorithmSelect.options[algorithmSelect.selectedIndex].text;
     // switching the title
     algoTitle.innerText = currentAlgoText;
@@ -77,13 +63,44 @@ algorithmSelect.addEventListener('change', e => {
     else if (data.currAlgo === 'merge-sort') {
         algoDescription.innerText = "Time complexity: O(n*log(n))";
     }
+}
+
+// ****************************************************
+//                      EVENTS
+// ****************************************************
+
+arrSizeSlider.addEventListener('input', () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning) return;
+
+    initBars(data);
 });
 
-startBtn.addEventListener('click', async e => {
-    if (!isSortRunning) {
-        isSortRunning = true;
-        await bubbleSort(data, 50);
-        isSortRunning = false;
+// Made this button, so that a user can try the same algorithm, without changing the size
+shuffleArrbtn.addEventListener('click', () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning) return;
+
+    initBars(data);
+});
+
+algorithmSelect.addEventListener('change', () => {
+    selectAlgo();
+});
+
+startBtn.addEventListener('click', async () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning)
+        return;
+
+    if (data.currAlgo === 'bubble-sort') {
+        await bubbleSortBars(data, 7);
+    }
+    else if (data.currAlgo === 'merge-sort') {
+        // await mergeSortBars(data, 7);
+    }
+    else if (data.currAlgo === 'quick-sort') {
+        // await quickSortBars(data, 7);
     }
 });
 
