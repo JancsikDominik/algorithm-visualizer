@@ -44,6 +44,14 @@ input[type="range"] {
     border-radius: 2px;
 }
 
+.sorting {
+    background: #e1d014;
+    width: 20px;
+    margin-right: 1px;
+    position: relative;
+    border-radius: 2px;
+}
+
 #settings {
     justify-content: center;
     display: flex;

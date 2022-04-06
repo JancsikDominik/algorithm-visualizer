@@ -8,22 +8,23 @@ const algoTitle = document.querySelector('h2');
 const algoDescription = document.querySelector('div#algorithm-description');
 
 const maxValue = 300;
-let bars = {
+let data = {
     heights: [],
     divs: [],
     currAlgo: "bubble-sort"
 }
+let isSortRunning = false;
 
 // ****************************************************
 //                    FUNCTIONS
 // ****************************************************
 
-// Initializes the array, and deletes the bars set by our previous init
-function initBars(bars) {
+// Initializes the array, and deletes the data set by our previous init
+function initBars(data) {
     // deleting array elements
-    bars.heights = [];
-    // deleting bars from array
-    bars.divs = [];
+    data.heights = [];
+    // deleting data from array
+    data.divs = [];
 
     // It's ok to use innerHTML here, because we set it to a constant defined by us.
     // We overwrite the innerHTML in order to erase every child element
@@ -34,21 +35,17 @@ function initBars(bars) {
         let div = document.createElement('div');
         div.setAttribute('class', 'bar');
         // number between 1 and maxValue
-        bars.heights.push(parseInt(Math.random() * (maxValue + 2) + 1));
-        div.style.height = numberArr[i] + "px";
+        data.heights.push(parseInt(Math.random() * (maxValue + 2) + 1));
+        div.style.height = data.heights[i] + "px";
         visualizationDiv.appendChild(div);
-        bars.divs.push(div);
+        data.divs.push(div);
     }
 }
 
 // function that runs every time the site loads
 function initSite() {
 
-    initBars(bars);
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    initBars(data);
 }
 
 // ****************************************************
@@ -56,39 +53,39 @@ function sleep(ms) {
 // ****************************************************
 
 arrSizeSlider.addEventListener('input', e => {
-    initBars(bars);
+    initBars(data);
 });
 
 // Made this button, so that a user can try the same algorithm, without changing the size
 shuffleArrbtn.addEventListener('click', e => {
-    initBars(bars);
+    initBars(data);
 });
 
 algorithmSelect.addEventListener('change', e => {
 
-    bars.currAlgo = e.target.value;
+    data.currAlgo = e.target.value;
     const currentAlgoText = algorithmSelect.options[algorithmSelect.selectedIndex].text;
     // switching the title
     algoTitle.innerText = currentAlgoText;
     // switching the description text
-    if (currAlgo === 'bubble-sort') {
+    if (data.currAlgo === 'bubble-sort') {
         algoDescription.innerText = "Time complexity: O(n^2)";
     }
-    else if (currAlgo === 'quick-sort') {
+    else if (data.currAlgo === 'quick-sort') {
         algoDescription.innerText = "Time complexity: O(n*log(n))";
     }
-    else if (currAlgo === 'merge-sort') {
+    else if (data.currAlgo === 'merge-sort') {
         algoDescription.innerText = "Time complexity: O(n*log(n))";
     }
 });
 
 startBtn.addEventListener('click', async e => {
-    let animation = await bubbleSort(numberArr);
-    for (let i = 0; i < animation.length; i++) {
-        divArr[i].style.height = animation[i] + "px";
-        await sleep(10);
+    if (!isSortRunning) {
+        isSortRunning = true;
+        await bubbleSort(data, 50);
+        isSortRunning = false;
     }
 });
 
-// loading the default value of bars
+// loading the default value of data
 initSite();
