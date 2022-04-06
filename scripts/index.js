@@ -8,18 +8,23 @@ const algoTitle = document.querySelector('h2');
 const algoDescription = document.querySelector('div#algorithm-description');
 
 const maxValue = 300;
-let numberArr = [];
-let divArr = [];
-let currAlgo = "bubble-sort";
+let data = {
+    heights: [],
+    divs: [],
+    currAlgo: "bubble-sort",
+    isSortRunning: false
+}
 
 // ****************************************************
 //                    FUNCTIONS
 // ****************************************************
 
-// Initializes the array, and deletes the bars set by our previous init
-function initArr() {
+// Initializes the array, and deletes the data set by our previous init
+function initBars(data) {
     // deleting array elements
-    numberArr = [];
+    data.heights = [];
+    // deleting data from array
+    data.divs = [];
 
     // It's ok to use innerHTML here, because we set it to a constant defined by us.
     // We overwrite the innerHTML in order to erase every child element
@@ -30,49 +35,74 @@ function initArr() {
         let div = document.createElement('div');
         div.setAttribute('class', 'bar');
         // number between 1 and maxValue
-        numberArr.push(parseInt(Math.random() * (maxValue + 2) + 1));
-        div.style.height = numberArr[i] + "px";
+        data.heights.push(parseInt(Math.random() * (maxValue + 2) + 1));
+        div.style.height = data.heights[i] + "px";
         visualizationDiv.appendChild(div);
-        divArr.push(div);
+        data.divs.push(div);
     }
 }
 
 // function that runs every time the site loads
 function initSite() {
 
-    initArr();
+    initBars(data);
+}
+
+function selectAlgo() {
+    data.currAlgo = algorithmSelect.options[algorithmSelect.selectedIndex].value;
+    const currentAlgoText = algorithmSelect.options[algorithmSelect.selectedIndex].text;
+    // switching the title
+    algoTitle.innerText = currentAlgoText;
+    // switching the description text
+    if (data.currAlgo === 'bubble-sort') {
+        algoDescription.innerText = "Time complexity: O(n^2)";
+    }
+    else if (data.currAlgo === 'quick-sort') {
+        algoDescription.innerText = "Time complexity: O(n*log(n))";
+    }
+    else if (data.currAlgo === 'merge-sort') {
+        algoDescription.innerText = "Time complexity: O(n*log(n))";
+    }
 }
 
 // ****************************************************
 //                      EVENTS
 // ****************************************************
 
-arrSizeSlider.addEventListener('input', e => {
-    initArr();
+arrSizeSlider.addEventListener('input', () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning) return;
+
+    initBars(data);
 });
 
 // Made this button, so that a user can try the same algorithm, without changing the size
-shuffleArrbtn.addEventListener('click', e => {
-    initArr();
+shuffleArrbtn.addEventListener('click', () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning) return;
+
+    initBars(data);
 });
 
-algorithmSelect.addEventListener('change', e => {
+algorithmSelect.addEventListener('change', () => {
+    selectAlgo();
+});
 
-    currAlgo = e.target.value;
-    const currentAlgoText = algorithmSelect.options[algorithmSelect.selectedIndex].text;
-    // switching the title
-    algoTitle.innerText = currentAlgoText;
-    // switching the description text
-    if (currAlgo === 'bubble-sort') {
-        algoDescription.innerText = "Time complexity: O(n^2)";
+startBtn.addEventListener('click', async () => {
+    // Do nothing if the array is already getting sorted
+    if (data.isSortRunning)
+        return;
+
+    if (data.currAlgo === 'bubble-sort') {
+        await bubbleSortBars(data, 7);
     }
-    else if (currAlgo === 'quick-sort') {
-        algoDescription.innerText = "Time complexity: O(n*log(n))";
+    else if (data.currAlgo === 'merge-sort') {
+        // await mergeSortBars(data, 7);
     }
-    else if (currAlgo === 'merge-sort') {
-        algoDescription.innerText = "Time complexity: O(n*log(n))";
+    else if (data.currAlgo === 'quick-sort') {
+        // await quickSortBars(data, 7);
     }
 });
 
-// loading the default value of bars
+// loading the default value of data
 initSite();
