@@ -58,6 +58,17 @@ input[type="range"] {
     width: 100%;
 }
 
+.delay-selector {
+    padding: 5px;
+    margin: 2px;
+}
+
+#delay-selector {
+    padding: 0px;
+    margin: 4px;
+    height: 30px;
+}
+
 button {
     padding: 7px;
     border-style: solid;
@@ -71,6 +82,18 @@ button {
 button:hover {
     padding: 7px;
     margin: 10px;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+
+button:hover.delay-selector {
+    padding: 5px;
+    margin: 2px;
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;

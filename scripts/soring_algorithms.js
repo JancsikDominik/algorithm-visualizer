@@ -13,7 +13,6 @@ async function bubbleSortBars(data, sleep_ms) {
     for (i = 0; i < len - 1; i++) {
         for (j = 0; j < len - i - 1; j++) {
             // we are currently working with these bars, so we color them
-            data.divs[j].setAttribute('class', 'sorting');
             data.divs[j + 1].setAttribute('class', 'sorting');
 
             // if it's too big we move it to the end
@@ -26,8 +25,7 @@ async function bubbleSortBars(data, sleep_ms) {
                 data.divs[j + 1].style.height = data.heights[j + 1] + 'px';
             }
 
-            if (sleep_ms != 0)
-                await sleep(sleep_ms);
+            await sleep(sleep_ms);
 
             // we aren't working with them anymore so we set them to their default color
             data.divs[j].setAttribute('class', 'bar');
@@ -38,5 +36,48 @@ async function bubbleSortBars(data, sleep_ms) {
     }
     // first element is sorted too
     data.divs[0].setAttribute('class', 'sorted');
+    data.isSortRunning = false;
+}
+
+async function insertionSortBars(data, sleepms) {
+
+    if (data.heights.length !== data.divs.length)
+        return;
+
+    data.isSortRunning = true;
+
+    for (let i = 1; i < data.heights.length; i++) {
+        let currentValue = data.heights[i];
+        let j = 0;
+        data.divs[i].setAttribute('class', 'sorting');
+        await sleep(sleepms / 2);
+
+        // shifting array to make space for the current value
+        for (j = i - 1; j >= 0 && data.heights[j] > currentValue; j--) {
+            data.heights[j + 1] = data.heights[j];
+            data.divs[j + 1].style.height = data.heights[j + 1] + 'px';
+        }
+
+        if (j !== i - 1) {
+            data.divs[j + 1].style.height = 0;
+            data.heights[j + 1] = 0;
+        }
+        data.divs[i].setAttribute('class', 'bar');
+        await sleep(sleepms / 3);
+
+        data.divs[j + 1].setAttribute('class', 'sorted')
+        data.heights[j + 1] = currentValue;
+        data.divs[j + 1].style.height = currentValue + 'px';
+
+        await sleep(sleepms / 3);
+    }
+    data.divs[0].setAttribute('class', 'sorted');
+    for (let i = 0; i < data.divs.length; i++) {
+        if (sleepms > 0) {
+            await sleep(3);
+        }
+        data.divs[i].setAttribute('class', 'sorted');
+    }
+
     data.isSortRunning = false;
 }
