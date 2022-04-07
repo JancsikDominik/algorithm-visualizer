@@ -63,13 +63,13 @@ async function insertionSortBars(data, sleepms) {
             data.heights[j + 1] = 0;
         }
         data.divs[i].setAttribute('class', 'bar');
-        await sleep(sleepms / 3);
+        await sleep(sleepms / 2);
 
         data.divs[j + 1].setAttribute('class', 'sorted')
         data.heights[j + 1] = currentValue;
         data.divs[j + 1].style.height = currentValue + 'px';
 
-        await sleep(sleepms / 3);
+        await sleep(sleepms / 2);
     }
     data.divs[0].setAttribute('class', 'sorted');
     for (let i = 0; i < data.divs.length; i++) {
