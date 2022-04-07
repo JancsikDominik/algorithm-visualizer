@@ -39,6 +39,7 @@ async function bubbleSortBars(data, sleep_ms) {
     data.isSortRunning = false;
 }
 
+// sorts the array and performs animation on the array
 async function insertionSortBars(data, sleepms) {
 
     if (data.heights.length !== data.divs.length)
@@ -58,6 +59,7 @@ async function insertionSortBars(data, sleepms) {
             data.divs[j + 1].style.height = data.heights[j + 1] + 'px';
         }
 
+        // doing this so it's easier to see where it puts the current element
         if (j !== i - 1) {
             data.divs[j + 1].style.height = 0;
             data.heights[j + 1] = 0;
@@ -71,7 +73,7 @@ async function insertionSortBars(data, sleepms) {
 
         await sleep(sleepms / 2);
     }
-    data.divs[0].setAttribute('class', 'sorted');
+
     for (let i = 0; i < data.divs.length; i++) {
         if (sleepms > 0) {
             await sleep(3);
