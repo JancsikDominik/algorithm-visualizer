@@ -38,3 +38,20 @@ cardsContainer.addEventListener('mouseout', e => {
         }
     }
 });
+
+cardsContainer.addEventListener('touchstart', e => {
+    if (e.target.matches('img')) {
+        if (e.target.src.includes("sorting")) {
+            e.target.src = "./assets/sorting.gif";
+        }
+    }
+});
+
+
+cardsContainer.addEventListener('touchend', e => {
+    if (e.target.matches('img')) {
+        if (e.target.src.includes("sorting")) {
+            e.target.src = "./assets/sorting_static.png";
+        }
+    }
+});
