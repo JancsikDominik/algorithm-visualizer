@@ -103,6 +103,11 @@ input[type="range"] {
     height: 30px;
 }
 
+div.algorithm-card>div.card-title>h2>a {
+    text-decoration-line: none;
+    color: #3299ae
+}
+
 button {
     padding: 7px;
     border-style: solid;
