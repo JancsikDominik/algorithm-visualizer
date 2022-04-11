@@ -90,12 +90,14 @@ input[type="range"] {
     justify-content: center;
 }
 
-.cards-container {
-    display: grid;
-    gap: 50px 50px;
-    margin: 20px;
-    grid-template-columns: 262px 262px 262px;
-    grid-template-rows: auto;
+@media (min-width: 900px) {
+    .cards-container {
+        display: grid;
+        gap: 50px 50px;
+        margin: 20px;
+        grid-template-columns: 262px 262px 262px;
+        grid-template-rows: auto;
+    }
 }
 
 .container-wrapper {
