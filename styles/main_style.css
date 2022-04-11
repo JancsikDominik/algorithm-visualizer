@@ -74,6 +74,24 @@ input[type="range"] {
     vertical-align: top;
     margin: 0 36px 36px 0;
     justify-content: center;
+    cursor: pointer;
+}
+
+.algorithm-card:hover {
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    width: 262px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 36px 36px 0;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
 }
 
 .card-title {
@@ -105,6 +123,20 @@ input[type="range"] {
 
 div.algorithm-card>div.card-title>h2>a {
     text-decoration-line: none;
+    color: #3299ae
+}
+
+div#return-link {
+    display: flex;
+    float: right;
+}
+
+a {
+    color: #9ecaed;
+    text-decoration: none;
+}
+
+a:hover {
     color: #3299ae
 }
 
