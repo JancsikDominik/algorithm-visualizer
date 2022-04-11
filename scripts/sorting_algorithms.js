@@ -6,7 +6,8 @@ const shuffleArrbtn = document.querySelector('button#shuffle-array-btn');
 const algorithmSelect = document.querySelector('select#select-algorithm');
 const algoTitle = document.querySelector('h2');
 const algoDescription = document.querySelector('div#algorithm-description');
-
+const delaySelectorDiv = document.querySelector('div#delay-selector');
+const animationDelayDiv = document.querySelector('div#animation-delay');
 const maxValue = 300;
 let data = {
     heights: [],
@@ -14,6 +15,8 @@ let data = {
     currAlgo: "bubble-sort",
     isSortRunning: false
 }
+
+let delay = 50;
 
 // ****************************************************
 //                    FUNCTIONS
@@ -57,11 +60,8 @@ function selectAlgo() {
     if (data.currAlgo === 'bubble-sort') {
         algoDescription.innerText = "Time complexity: O(n^2)";
     }
-    else if (data.currAlgo === 'quick-sort') {
-        algoDescription.innerText = "Time complexity: O(n*log(n))";
-    }
-    else if (data.currAlgo === 'merge-sort') {
-        algoDescription.innerText = "Time complexity: O(n*log(n))";
+    else if (data.currAlgo === 'insertion-sort') {
+        algoDescription.innerText = "Time complexity: O(n^2)";
     }
 }
 
@@ -94,13 +94,18 @@ startBtn.addEventListener('click', async () => {
         return;
 
     if (data.currAlgo === 'bubble-sort') {
-        await bubbleSortBars(data, 7);
+        await bubbleSortBars(data, delay);
     }
-    else if (data.currAlgo === 'merge-sort') {
-        // await mergeSortBars(data, 7);
+    else if (data.currAlgo === 'insertion-sort') {
+        await insertionSortBars(data, delay);
     }
-    else if (data.currAlgo === 'quick-sort') {
-        // await quickSortBars(data, 7);
+});
+
+delaySelectorDiv.addEventListener('click', e => {
+    if (e.target.matches('button')) {
+        delay = e.target.id;
+        // changing title
+        animationDelayDiv.innerText = 'Delay: ' + e.target.id + 'ms';
     }
 });
 
