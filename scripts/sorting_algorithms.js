@@ -9,6 +9,7 @@ const algoDescription = document.querySelector('div#algorithm-description');
 const delaySelectorDiv = document.querySelector('div#delay-selector');
 const animationDelayDiv = document.querySelector('div#animation-delay');
 const maxValue = 300;
+
 let data = {
     heights: [],
     divs: [],

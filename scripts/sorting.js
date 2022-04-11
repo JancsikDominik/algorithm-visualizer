@@ -1,12 +1,15 @@
+// sleep function so the user can actually see whats happening
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // sorts the bars array with the specified delay
 async function bubbleSortBars(data, sleep_ms) {
+    // if our data is flawed, do nothing
     if (data.heights.length !== data.divs.length)
         return;
 
+    // setting this value so the user can't change stuff while the animation is running
     data.isSortRunning = true;
     let len = data.heights.length;
 
@@ -36,15 +39,17 @@ async function bubbleSortBars(data, sleep_ms) {
     }
     // first element is sorted too
     data.divs[0].setAttribute('class', 'sorted');
+    // giving back control to user
     data.isSortRunning = false;
 }
 
 // sorts the array and performs animation on the array
 async function insertionSortBars(data, sleepms) {
-
+    // if our data is flawed, do nothing
     if (data.heights.length !== data.divs.length)
         return;
 
+    // setting this value so the user can't change stuff while the animation is running
     data.isSortRunning = true;
 
     for (let i = 1; i < data.heights.length; i++) {
@@ -74,6 +79,7 @@ async function insertionSortBars(data, sleepms) {
         await sleep(sleepms / 2);
     }
 
+    // setting everything to sorted (even the ones we didn't move)
     for (let i = 0; i < data.divs.length; i++) {
         if (sleepms > 0) {
             await sleep(3);
@@ -81,5 +87,6 @@ async function insertionSortBars(data, sleepms) {
         data.divs[i].setAttribute('class', 'sorted');
     }
 
+    // giving back control to user
     data.isSortRunning = false;
 }
