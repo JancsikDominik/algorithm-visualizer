@@ -68,7 +68,7 @@ input[type="range"] {
     box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
     border-radius: 4px;
     overflow: hidden;
-    background: #fff;
+    background: var(--main-bg-color);
     width: 262px;
     display: inline-block;
     vertical-align: top;
@@ -78,18 +78,6 @@ input[type="range"] {
 }
 
 .algorithm-card:hover {
-    box-sizing: border-box;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
-    border-radius: 4px;
-    overflow: hidden;
-    background: #fff;
-    width: 262px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 36px 36px 0;
-    justify-content: center;
-    cursor: pointer;
-    outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;
 }
@@ -148,6 +136,35 @@ button {
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     margin: 10px;
+}
+
+img.static {
+    position: relative;
+    top: 0;
+    left: 0;
+    background: white;
+}
+
+img.static:hover {
+    opacity: 0;
+}
+
+img.active {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+}
+
+img.active:hover {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+}
+
+div.overlaying-img-wrapper {
+    position: relative;
 }
 
 button:hover {

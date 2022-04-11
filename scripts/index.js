@@ -21,3 +21,20 @@ cardsContainer.addEventListener('click', e => {
         window.location.replace(desiredLink);
     }
 });
+
+cardsContainer.addEventListener('mouseover', e => {
+    if (e.target.matches('img')) {
+        if (e.target.src.includes("sorting")) {
+            e.target.src = "./assets/sorting.gif";
+        }
+    }
+});
+
+
+cardsContainer.addEventListener('mouseout', e => {
+    if (e.target.matches('img')) {
+        if (e.target.src.includes("sorting")) {
+            e.target.src = "./assets/sorting_static.png";
+        }
+    }
+});
