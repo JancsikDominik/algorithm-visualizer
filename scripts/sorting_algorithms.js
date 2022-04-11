@@ -104,7 +104,7 @@ startBtn.addEventListener('click', async () => {
 delaySelectorDiv.addEventListener('click', e => {
     if (e.target.matches('button')) {
         delay = e.target.id;
-        console.log(animationDelayDiv.innerText)
+        // changing title
         animationDelayDiv.innerText = 'Delay: ' + e.target.id + 'ms';
     }
 });

@@ -5,53 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/main_style.css">
+
     <title>Algorithm visualizer</title>
 </head>
 
 <body>
-    <div id="animation-delay">
-        Delay: 50ms
-    </div>
-    <div id="delay-selector">
-        <button class="delay-selector" id="10">10ms</button>
-        <button class="delay-selector" id="20">20ms</button>
-        <button class="delay-selector" id="50">50ms</button>
-        <button class="delay-selector" id="100">100ms</button>
-        <button class="delay-selector" id="250">250ms</button>
-        <button class="delay-selector" id="500">500ms</button>
-    </div>
-
-    <div id="start-btn-wrapper">
-        <button id="start-btn">Start animation</button>
-    </div>
-
-    <div id="visualizer">
-    </div>
-
-
-    <div id="settings">
-        <button id="shuffle-array-btn">Shuffle Array</button>
-
-        <div class="range-wrapper">
-            <label for="array-size-slider">Array size</label>
-            <input type="range" min="10" max="100" value="50" class="slider" id="array-size-slider">
-        </div>
-
-        <select name="sorting-algorithms" id="select-algorithm">
-            <option value="bubble-sort" selected>Bubble Sort</option>
-            <option value="insertion-sort">Insertion Sort</option>
-        </select>
-    </div>
-
-
-    <h2>Bubble sort</h2>
-    <div id="algorithm-description">
-        Time complexity: O(n^2)
-    </div>
-
-    <script src="./scripts/soring_algorithms.js"></script>
-    <script src="./scripts/index.js"></script>
+    <a href="visualizer_sites/sorting_algorithms.html">soriting</a>
 </body>
 
 </html>
