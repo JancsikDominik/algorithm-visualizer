@@ -63,6 +63,40 @@ input[type="range"] {
     margin: 2px;
 }
 
+.algorithm-card {
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+    width: 262px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 36px 36px 0;
+    justify-content: center;
+}
+
+.card-title {
+    font-size: small;
+    display: flex;
+    color: #3299ae;
+    background-color: rgb(223, 223, 223);
+    justify-content: center;
+}
+
+.cards-container {
+    display: grid;
+    gap: 50px 50px;
+    margin: 20px;
+    grid-template-columns: 262px 262px 262px;
+    grid-template-rows: auto;
+}
+
+.container-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 #delay-selector {
     padding: 0px;
     margin: 4px;
