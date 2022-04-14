@@ -13,7 +13,7 @@ const maxValue = 300;
 let data = {
     heights: [],
     divs: [],
-    currAlgo: "bubble-sort",
+    currAlgo: 'bubble-sort',
     isSortRunning: false
 }
 
@@ -25,9 +25,9 @@ let delay = 50;
 
 // Initializes the array, and deletes the data set by our previous init
 function initBars(data) {
-    // deleting array elements
+
+    // deleting left over data
     data.heights = [];
-    // deleting data from array
     data.divs = [];
 
     // It's ok to use innerHTML here, because we set it to a constant defined by us.
@@ -35,7 +35,7 @@ function initBars(data) {
     visualizationDiv.innerHTML = "";
 
     for (let i = 0; i < arrSizeSlider.value; i++) {
-        // not using innerHTML, so that the site is safe against injections
+        
         let div = document.createElement('div');
         div.setAttribute('class', 'bar');
         // number between 1 and maxValue
@@ -110,5 +110,5 @@ delaySelectorDiv.addEventListener('click', e => {
     }
 });
 
-// loading the default value of data
+// loading the default values of the data
 initSite();

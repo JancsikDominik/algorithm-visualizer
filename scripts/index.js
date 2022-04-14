@@ -4,7 +4,6 @@ cardsContainer.addEventListener('click', e => {
     // if we click on the image, we have to access the link differently
     if (e.target.matches('img')) {
 
-        // getting the card div
         const parent = e.target.parentElement;
         // navigating into the title part where the link is
         const titleDiv = parent.getElementsByClassName('card-title');
@@ -34,8 +33,7 @@ cardsContainer.addEventListener('mouseover', e => {
     if (e.target.matches('img')) {
         // checking which image to use
         if (e.target.src.includes("sorting")) {
-            // switching image
-            e.target.src = "./assets/sorting.gif";
+            e.target.src = './assets/sorting.gif';
         }
     }
 });
@@ -44,9 +42,8 @@ cardsContainer.addEventListener('mouseout', e => {
     // deactivating when the user's mouse leaves the image
     if (e.target.matches('img')) {
         // checking which image to use
-        if (e.target.src.includes("sorting")) {
-            // switching image
-            e.target.src = "./assets/sorting_static.png";
+        if (e.target.src.includes('sorting')) {
+            e.target.src = './assets/sorting_static.png';
         }
     }
 });
@@ -55,9 +52,8 @@ cardsContainer.addEventListener('touchstart', e => {
     // only activate if we are touching on the image
     if (e.target.matches('img')) {
         // checking which image to use
-        if (e.target.src.includes("sorting")) {
-            // switching image
-            e.target.src = "./assets/sorting.gif";
+        if (e.target.src.includes('sorting')) {
+            e.target.src = './assets/sorting.gif';
         }
     }
 });
@@ -66,9 +62,8 @@ cardsContainer.addEventListener('touchend', e => {
     // deactivating when the user isn't touching the image anymore
     if (e.target.matches('img')) {
         // checking which image to use
-        if (e.target.src.includes("sorting")) {
-            // switching image
-            e.target.src = "./assets/sorting_static.png";
+        if (e.target.src.includes('sorting')) {
+            e.target.src = './assets/sorting_static.png';
         }
     }
 });
