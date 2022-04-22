@@ -12,6 +12,7 @@ class TreeVisualizerHelper {
     drawNode = (x, y, size, value) => {
         this.ctx.beginPath();
         this.ctx.strokeStyle = '#fff';
+        // size == radius
         this.ctx.arc(x, y, size, 0, 2 * 3.145, true);
         this.ctx.stroke();
         this.ctx.fillText(value, x, y);
@@ -20,15 +21,18 @@ class TreeVisualizerHelper {
     }
 
     connectNodes(node1, node2) {
+        // since one value can only appear once in our tree this is a fine solution
         let node1Data = this.nodes.find(v => v.value === node1.value);
         let node2Data = this.nodes.find(v => v.value === node2.value);
-        console.log(node1Data);
-        console.log(node2Data);
+        // connecting the nodes
         this.ctx.beginPath();
         this.ctx.strokeStyle = '#fff';
-        ctx.moveTo(node1Data.x, node1Data.y + node1Data.size);
-        ctx.lineTo(node2Data.x, node2Data.y - node2Data.size);
-        ctx.stroke();
+        // we add the arc size so the line will go from the edge of the circle
+        this.ctx.moveTo(node1Data.x, node1Data.y + node1Data.size);
+        // we substract the arc size so the line will go from the edge of the circle
+        this.ctx.lineTo(node2Data.x, node2Data.y - node2Data.size);
+        // drawing line
+        this.ctx.stroke();
     }
 
     clearScreen() {
@@ -150,12 +154,19 @@ class SearchTree {
         }
         return node.value;
     }
+}
 
-    drawTree(treeVisualizerClass) {
+class Visualizer {
+    constructor(searchTree, visualizerHelper) {
+        this.searchTree = searchTree;
+        this.visualizerHelper = visualizerHelper;
+    }
+
+    insert(value) {
+        tree.insert(value);
+    }
+
+    drawTree() {
 
     }
 }
-
-ctx = canvas.getContext('2d');
-
-ctx.clearRect(0, 0, canvas.width, canvas.height);
