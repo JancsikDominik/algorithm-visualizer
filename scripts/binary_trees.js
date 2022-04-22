@@ -54,6 +54,7 @@ class SearchTree {
         this.trunk = trunk;
     }
 
+    // inserts value into tree
     insert(value, node = this.trunk) {
 
         // if the trunk is uninitalized we can't insert anywhere else but the trunk
