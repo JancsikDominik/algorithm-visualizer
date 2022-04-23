@@ -107,6 +107,13 @@ input[type="range"] {
     }
 }
 
+canvas {
+    justify-content: center;
+    display: flex;
+    padding-bottom: 40px;
+    flex-grow: 1;
+}
+
 .container-wrapper {
     display: flex;
     justify-content: center;
@@ -229,4 +236,20 @@ div.range-wrapper {
     justify-content: center;
     display: flex;
     width: 100%;
+}
+
+input[type="text"] { 
+    padding: 5px 5px; 
+    line-height: 0.5em;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+}
+
+#error-message {
+    color: red;
 }
