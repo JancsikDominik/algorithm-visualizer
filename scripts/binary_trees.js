@@ -248,6 +248,11 @@ class Visualizer {
 let visualizer = new Visualizer(new SearchTree(), new TreeVisualizerHelper(canvas));
 
 insertBtn.addEventListener('click', () => {
+    // input validation
+    // bad inbuts: 
+    //     - the tree contains the value we wanted to insert
+    //     - the input isn't a number
+    //     - we can't show the tree because it's too deep
     if(visualizer.tree.contains(parseInt(input.value))) {
         errorSection.innerHTML = 'Error: can\'t insert the same value twice in the tree';
     }
