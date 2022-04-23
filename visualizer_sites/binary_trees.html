@@ -10,7 +10,23 @@
 </head>
 
 <body>
-    <canvas width="1000" height="500"></canvas>
+    <section id="depth">Depth: </section>
+    <div class="center">
+        <canvas width="1000" height="500">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+    </div>
+
+    <div id="settings">
+        <button id="remmin">Remove Min</button>
+        <button id="remmax">Remove Max</button>
+        <button id="insert">Insert</button>
+    </div>
+    <div class="center">
+        <label for="value">Value to insert:</label>
+        <input type="text" id="value" name="value" height="1px">
+        <section id="error-message"></section>
+    </div>
     <script src="../scripts/binary_trees.js"></script>
 </body>
 

@@ -1,5 +1,10 @@
 const canvas = document.querySelector('canvas');
-
+const remMinBtn = document.querySelector('button#remmin');
+const remMaxBtn = document.querySelector('button#remmax');
+const insertBtn = document.querySelector('button#insert');
+const input = document.querySelector('input#value');
+const depthSection = document.querySelector('section#depth');
+const errorSection = document.querySelector('section#error-message');
 
 class TreeVisualizerHelper {
     constructor(canvas) {
@@ -73,11 +78,11 @@ class TreeVisualizerHelper {
 
     drawTree(tree) {
         // too big or uninitialized
-        if(tree.getDepth() >= 10 || tree.trunk === undefined) {
+        if(tree.getDepth() > 6 || tree.trunk === undefined) {
             return;
         }
         const size = 20;
-        this.drawNode(this.centerX, this.centerY / 2, size, tree.trunk.value);
+        this.drawNode(this.centerX, this.centerY / 2 - 10, size, tree.trunk.value);
         this.#drtree(tree.trunk.left, tree.trunk, 50, 70, size);
         this.#drtree(tree.trunk.right, tree.trunk, 50, 70, size);
     }
@@ -188,7 +193,7 @@ class SearchTree {
             this.trunk = this.trunk.left;
         }
         else {
-            if (node.right === undefined) {
+            if (node.left === undefined) {
                 before.right = undefined;
             }
             else {
@@ -196,6 +201,21 @@ class SearchTree {
             }
         }
         return node.value;
+    }
+
+    #contains(value, node) {
+        if(node === undefined) {
+            return false;
+        }
+        else if(node.value === value) {
+            return true;
+        }
+
+        return this.#contains(value, node.left) || this.#contains(value, node.right);
+    }
+
+    contains(value) {
+        return this.#contains(value, this.trunk);
     }
 }
 
@@ -206,7 +226,7 @@ class Visualizer {
     }
 
     insert(value) {
-        this.tree.insert(value);
+        this.tree.insert(parseInt(value));
         this.helper.clearScreen();
         this.helper.drawTree(this.tree);
     }
@@ -216,7 +236,7 @@ class Visualizer {
         this.helper.clearScreen();
         this.helper.drawTree(this.tree);
     }
-    
+
     remMax() {
         this.tree.remMax();
         this.helper.clearScreen();
@@ -224,4 +244,34 @@ class Visualizer {
     }
 }
 
-let v = new Visualizer(new SearchTree(), new TreeVisualizerHelper(canvas));
+// creating visualizer
+let visualizer = new Visualizer(new SearchTree(), new TreeVisualizerHelper(canvas));
+
+insertBtn.addEventListener('click', () => {
+    if(visualizer.tree.contains(parseInt(input.value))) {
+        errorSection.innerHTML = 'Error: can\'t insert the same value twice in the tree';
+    }
+    else if(isNaN(input.value)) {
+        errorSection.innerHTML = 'Error: can\'t insert strings into the tree';
+    }
+    else if(visualizer.tree.getDepth() >= 6) {
+        errorSection.innerHTML = 'Error: can\'t insert anymore, because the tree is too deep';
+    }
+    else {
+        visualizer.insert(parseInt(input.value));
+        errorSection.innerHTML = '';
+        depthSection.innerHTML = 'Depth: ' + visualizer.tree.getDepth();
+    }
+});
+
+remMaxBtn.addEventListener('click', () => {
+    visualizer.remMax();
+    errorSection.innerHTML = '';
+    depthSection.innerHTML = 'Depth: ' + visualizer.tree.getDepth();
+});
+
+remMinBtn.addEventListener('click', () => {
+    visualizer.remMin();
+    errorSection.innerHTML = '';
+    depthSection.innerHTML = 'Depth: ' + visualizer.tree.getDepth();
+});
