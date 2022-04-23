@@ -35,6 +35,9 @@ cardsContainer.addEventListener('mouseover', e => {
         if (e.target.src.includes("sorting")) {
             e.target.src = './assets/sorting.gif';
         }
+        else if (e.target.src.includes('binary')) {
+            e.target.src = './assets/binarytree.gif';
+        }
     }
 });
 
@@ -44,6 +47,9 @@ cardsContainer.addEventListener('mouseout', e => {
         // checking which image to use
         if (e.target.src.includes('sorting')) {
             e.target.src = './assets/sorting_static.png';
+        }
+        else if (e.target.src.includes('binary')) {
+            e.target.src = './assets/binarytree-static.png';
         }
     }
 });
@@ -55,6 +61,9 @@ cardsContainer.addEventListener('touchstart', e => {
         if (e.target.src.includes('sorting')) {
             e.target.src = './assets/sorting.gif';
         }
+        else if (e.target.src.includes('binary')) {
+            e.target.src = './assets/binarytree.gif';
+        }
     }
 });
 
@@ -64,6 +73,9 @@ cardsContainer.addEventListener('touchend', e => {
         // checking which image to use
         if (e.target.src.includes('sorting')) {
             e.target.src = './assets/sorting_static.png';
+        }
+        else if (e.target.src.includes('binary')) {
+            e.target.src = './assets/binarytree-static.png';
         }
     }
 });
