@@ -15,8 +15,10 @@ class TreeVisualizerHelper {
         // size == radius
         this.ctx.arc(x, y, size, 0, 2 * 3.145, true);
         this.ctx.stroke();
-        this.ctx.fillText(value, x, y);
+
         this.ctx.strokeText(value, x - 6, y + 4);
+        
+
         this.nodes.push({ x, y, size, value });
     }
 
@@ -38,6 +40,46 @@ class TreeVisualizerHelper {
     clearScreen() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.nodes = [];
+    }
+
+    #drtree(node, befNode, offsetx, offsety, size) {
+        if(node === undefined) {
+            return;
+        }
+        const befNodeData = this.nodes.find(v => v.value === befNode.value);
+        let newX = undefined;
+        let newY = undefined;
+
+        if(befNode.value > node.value) {
+            newX = befNodeData.x - offsetx;
+            newY = befNodeData.y + offsety
+        }
+        else {
+            newX = befNodeData.x + offsetx;
+            newY = befNodeData.y + offsety
+        }
+
+        this.drawNode(newX, newY, size, node.value);
+        this.connectNodes(befNode, node);
+
+        if(node.left !== undefined) {
+            this.#drtree(node.left, node, offsetx, offsety, size);
+        }
+        if(node.right !== undefined) {
+            this.#drtree(node.right, node, offsetx, offsety, size);
+        }
+
+    }
+
+    drawTree(tree) {
+        // too big or uninitialized
+        if(tree.getDepth() >= 10 || tree.trunk === undefined) {
+            return;
+        }
+        const size = 20;
+        this.drawNode(this.centerX, this.centerY / 2, size, tree.trunk.value);
+        this.#drtree(tree.trunk.left, tree.trunk, 50, 70, size);
+        this.#drtree(tree.trunk.right, tree.trunk, 50, 70, size);
     }
 }
 
@@ -159,15 +201,27 @@ class SearchTree {
 
 class Visualizer {
     constructor(searchTree, visualizerHelper) {
-        this.searchTree = searchTree;
-        this.visualizerHelper = visualizerHelper;
+        this.tree = searchTree;
+        this.helper = visualizerHelper;
     }
 
     insert(value) {
-        tree.insert(value);
+        this.tree.insert(value);
+        this.helper.clearScreen();
+        this.helper.drawTree(this.tree);
     }
 
-    drawTree() {
-
+    remMin() {
+        this.tree.remMin();
+        this.helper.clearScreen();
+        this.helper.drawTree(this.tree);
+    }
+    
+    remMax() {
+        this.tree.remMax();
+        this.helper.clearScreen();
+        this.helper.drawTree(this.tree);
     }
 }
+
+let v = new Visualizer(new SearchTree(), new TreeVisualizerHelper(canvas));
